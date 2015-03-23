@@ -1,0 +1,35 @@
+<p>
+  <strong>Title:</strong>
+  <%= @question.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @question.description %>
+</p>
+
+<%= render 'questioncomments/questioncomments'%>
+
+<%= render 'questioncomments/form' %>
+
+<% @question.answers.each do |answer| %>
+  <p><%= answer.body %></p>
+
+  <%= link_to "Upvote", like_question_answer_path(@question, answer), method: :put%>
+  <%= link_to "Downvote", dislike_question_answer_path(@question, answer), method: :put%>
+
+  <% answer.answercomments.each do |answercomment| %>
+    <%= answercomment.body%>
+<%end%>
+
+  <%= render 'answercomments/form', answer: answer %>
+
+
+  <%end%>
+
+<%= render 'answers/form' %>
+
+
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

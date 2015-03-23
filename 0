@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20150322232047_add_karma_to_user.rb

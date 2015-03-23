@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @answercomment.body %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @answercomment.answer_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @answercomment.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_answercomment_path(@answercomment) %> |
+<%= link_to 'Back', answercomments_path %>
