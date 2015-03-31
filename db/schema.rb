@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322232047) do
+ActiveRecord::Schema.define(version: 20150329182629) do
 
   create_table "answercomments", force: :cascade do |t|
     t.text     "body"
@@ -51,20 +51,21 @@ ActiveRecord::Schema.define(version: 20150322232047) do
     t.text     "description"
     t.integer  "user_id"
     t.integer  "category_id"
-    t.integer  "tally"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.integer  "tally",                  default: 0
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "answers_count",          default: 0
     t.integer  "questioncomments_count", default: 0
+    t.boolean  "anonymous",              default: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -74,6 +75,12 @@ ActiveRecord::Schema.define(version: 20150322232047) do
     t.integer  "answers_count",          default: 0
     t.integer  "questions_count",        default: 0
     t.integer  "karma",                  default: 0
+    t.string   "name"
+    t.string   "company"
+    t.string   "SRA_number",             default: ""
+    t.boolean  "verified",               default: false
+    t.boolean  "is_solicitor",           default: false
+    t.string   "industry"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

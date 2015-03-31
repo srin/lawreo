@@ -1,6 +1,78 @@
-<% @questions.each do |question| %>
+<%= render 'question_cat_heading' %>
 
-<p><%= question.title %><p>
-<p><%= question.description %></p>
-<%= link_to "Show", question %>
+<%= render 'question_filter' %>
+
+
+ <% if @questions.count == 0 && params[:unanswered] != 'true' %>
+<div class="col-md-10 col-md-offset-1" align="center">
+	<div class="row">
+	    <p style="margin-top: 40px"> No questions yet, be the first to ask! </p>
+
+	     
+	    <%= link_to "Ask a Question!", new_question_path, class: "btn btn-success"%>
+	    
+
+	  <% elsif @questions.count == 0 && params[:unanswered] == 'true' %>
+
+	  <p>There are no unanswered questions</p>
+	</div>
+</div>
+
+  <%else%>
+
+<div class="col-md-10 col-md-offset-1">
+	<div class="row">
+
+		<% @questions.each do |question| %>
+
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-2">
+						<div class="col-md-6" id="questionboxstats">
+							<h5>&nbsp;&nbsp; <%= question.answers_count%></h5>
+							<p><small>Answers</small></p>
+						</div>
+
+						<div class="col-md-6" id="questionboxstats">
+							<h5><%= question.tally%></h5>
+							<p><small>Votes</small></p>
+						</div>
+					</div>
+
+					<div class="col-md-9" id="questiondetails">
+					<h5><strong><%= question.title %></strong></h5>
+				
+					<p><%= question.description %></p>
+					</div>
+
+					<div class="col-md-1">
+						
+						<div id="buttoncolumn">
+							
+							<%= link_to "Answer", question, class: "btn btn-primary" %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-9 col-md-offset-2">
+					<ul class="list-inline">
+						<% if question.created_at == question.updated_at %>
+							<li><h5><small>Asked <%= question.created_at.to_formatted_s(:long) %></small></h5></li>
+							<%else%>
+							<li><h5><small>Asked <%= question.created_at.to_formatted_s(:long) %></small></h5>
+							<h5><small>Last updated <%= question.updated_at.to_formatted_s(:long) %></small></h5></li>
+						<%end%> 
+						
+							<li> <%= image_tag "missingsmall.png", class: "smallprofileimage"%><span class="firstlastname"><%= question.user.name %>, <span class="companyinfo">  <%= question.user.company %></span></span></li>
+							<li><span class="category"><%= link_to "#{question.category.name}", polymorphic_path([question.category.linkname])  %> </span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%end%>
+	</div>
+</div>
 <%end%>

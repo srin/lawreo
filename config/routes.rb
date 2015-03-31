@@ -21,6 +21,8 @@ get 'questions/commercial'
   match 'questions/real_estate' => 'questions#real_estate', via: [:get]
   match 'questions/venture_cap' => 'questions#venturecap', via: [:get]
 
+  match 'search' => 'questions#search', via: [:get, :post], as: :search
+
 resources :answers do
     resources :answercomments
   end
@@ -38,7 +40,7 @@ resources :answers do
   end
 end
 
-  root 'questions#index'
+  root 'questions#show_all'
 
   
   

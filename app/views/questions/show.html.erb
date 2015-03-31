@@ -1,35 +1,152 @@
-<p>
-  <strong>Title:</strong>
-  <%= @question.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @question.description %>
-</p>
-
-<%= render 'questioncomments/questioncomments'%>
-
-<%= render 'questioncomments/form' %>
-
-<% @question.answers.each do |answer| %>
-  <p><%= answer.body %></p>
-
-  <%= link_to "Upvote", like_question_answer_path(@question, answer), method: :put%>
-  <%= link_to "Downvote", dislike_question_answer_path(@question, answer), method: :put%>
-
-  <% answer.answercomments.each do |answercomment| %>
-    <%= answercomment.body%>
-<%end%>
-
-  <%= render 'answercomments/form', answer: answer %>
+<div class="col-md-10 col-md-offset-1">
+  <div class="row">
 
 
-  <%end%>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          
 
-<%= render 'answers/form' %>
+          <div class="col-md-12" id="questionshow">
+          <h3><%= @question.title %></h3>
+        
+          <p><%= @question.description %></p>
+          </div>
+
+          
+        </div>
+
+        <div class="row">
+          <div class="col-md-10">
+          <ul class="list-inline">
+            <% if @question.created_at == @question.updated_at %>
+              <li><h5><small>Asked <%= @question.created_at.to_formatted_s(:long) %></small></h5></li>
+              <%else%>
+              <li><h5><small>Asked <%= @question.created_at.to_formatted_s(:long) %></small></h5>
+              <h5><small>Last updated <%= @question.updated_at.to_formatted_s(:long) %></small></h5></li>
+            <%end%> 
+            
+              <li> <%= image_tag "missingsmall.png", class: "smallprofileimage"%><span class="firstlastname"><%=@question.user.name %>, <span class="companyinfo">  <%= @question.user.company %></span></span></li>
+              <li><span class="category"><%= link_to "#{@question.category.name}", "#"  %></span></li>
+            </ul>
+          </div>
+
+          <div class="col-md-1">
+            
+            
+              
+              <%= link_to "Answer", "#", class: "btn btn-primary" %>
+            
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <hr>
+</div>
+
+<div id="collapsebutton">
+  <button class="btn btn-primary">
+    (<%= @question.answers_count %>) Answers <br>
+    Click to view
+
+  </button>
+
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#questioncomments">
+    (<%= @question.questioncomments_count %>) comments to this question <br>
+    Click to view
+  </button>
+
+</div>
+
+<br>
+<div id="questioncomments" class="collapse out">
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-5">
+
+    <%= render 'questioncomments/questioncomments'%>
+    </div>
+
+  </div>
 
 
+  <div class="row">
+    <div class="col-md-4 col-md-offset-7">
+    <%= render 'questioncomments/form' %>
 
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+    </div>
+  </div>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <% @question.answers.each do |answer| %>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="col-md-1">
+          <ul id="votecolumn">
+            <li><%=link_to image_tag("icon_upvote.png", :border => 0, width: 18), like_question_answer_path(@question, answer), method: :put%></li>
+            <li id="votenumber">&nbsp<%= answer.get_upvotes.size - answer.get_downvotes.size %> </li>
+            <li><%= link_to image_tag("icon_downvote.png", :border => 0, width: 18), dislike_question_answer_path(@question, answer), method: :put%></li>
+          </ul>
+        </div>
+        
+        <div class="col-md-10 col-md-offset-1">
+        <br>
+        <p><%= answer.body %></p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 col-md-offset-2">
+            <ul class="list-inline" id="answerinlinelist">
+              <li><h5><small>Answered <%= answer.created_at.to_formatted_s(:long) %></small></h5></li>
+              <li><span class="upvotesinfo">Upvotes: <%= answer.get_upvotes.size - answer.get_downvotes.size %></span></li>
+              
+              <li> <%= image_tag "missingsmall.png", class: "smallprofileimage"%><span class="firstlastname"><%= answer.user.name %>, <span class="companyinfo">  <%= answer.user.company %></span></span></li>  
+
+              <li> <span class="userscorelabel"> User Score: <%= answer.user.karma %></span></li>
+              <li>
+            <% if answer.user.verified == true %> 
+            <span class="verifiedsolicitor">
+              <%= "Verified"%></span>
+              <%else%>
+              <span class="pendingverification">
+                <%= "Verification pending" %><span>
+              </li>
+              <%end%>
+            </ul>
+
+          </div>
+        </div>
+      </div>  
+    </div>
+
+    <%end%>
+
+  </div>
+  <div class="col-md-8 col-md-offset-3">
+  <div class="form-group">
+    <%= form_for [@question, Answer.new] do |f| %>
+
+      <div class="field">
+        <%= f.label :body, "Post an answer" %><br>
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
+      
+    
+      <div class="actions">
+        <br>
+        <%= f.submit class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+</div>
+

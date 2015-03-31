@@ -5,7 +5,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.text :description
       t.integer :user_id
       t.integer :category_id
-      t.integer :tally
+      t.integer :tally, default: 0
 
       t.timestamps null: false
     end

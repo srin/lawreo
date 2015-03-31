@@ -9,31 +9,47 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
-  end
+    
+    q = params[:q]
+    @questions = Question.search(description_or_title_or_answers_body_cont: q).result.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+     
+    
+    end
+
+    def search
+    q = params[:q]
+    @questions = Question.search(description_or_title_or_answers_body_cont: q).result.order("created_at DESC").to_a.uniq
+    @heading = "Search"
+    end
 
   def show_all
     @questions = apply_scopes(Question).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @heading = "View all"
     end
 
     def commercial
     @questions = (Question).where(category_id: 1).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @heading = "Commercial"
     end
 
     def ip
     @questions = apply_scopes(Question).where(category_id: 2).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @heading = "Intellectual Property"
     end
 
   def employment
     @questions = apply_scopes(Question).where(category_id: 3).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @heading = "Employment"
   end
 
   def real_estate
     @questions = apply_scopes(Question).where(category_id: 4).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @heading = "Real Estate"
   end
 
   def venture_cap
     @questions = apply_scopes(Question).where(category_id: 5).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @heading = "Venture capital"
   end
 
   # GET /questions/1

@@ -28,6 +28,7 @@ class QuestioncommentsController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @questioncomment = @question.questioncomments.new(questioncomment_params)
+    @questioncomment.user = current_user
 
     respond_to do |format|
       if @questioncomment.save
