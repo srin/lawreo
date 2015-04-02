@@ -49,13 +49,13 @@
 
 <div id="collapsebutton">
   <button class="btn btn-primary">
-    (<%= @question.answers_count %>) Answers <br>
-    Click to view
+    <%= pluralize(@question.answers_count, "Answer")%><br>
+    Scroll down to view
 
   </button>
 
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#questioncomments">
-    (<%= @question.questioncomments_count %>) comments to this question <br>
+    <%= pluralize(@question.questioncomments_count, "Comment") %> to this question <br>
     Click to view
   </button>
 

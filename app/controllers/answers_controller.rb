@@ -1,5 +1,7 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index] 
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
 
   # GET /answers
@@ -103,6 +105,11 @@ class AnswersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
       @answer = Answer.find(params[:id])
+    end
+
+    def correct_user
+      @answer = current_user.answers.find_by(id: params[:id])
+      redirect_to questions_path, notice: "Not authorized to edit this answer" if @answer.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

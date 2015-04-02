@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-
+  before_action :authenticate_user!, except: [:index, :show, :recent, :search, :show_all, :commercial, :ip, :employment, :real_estate, :venture_cap] 
+  before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :set_question, only: [:show, :edit, :update, :destroy]
     has_scope :recent, :type => :boolean
     has_scope :unanswered, :type => :boolean
@@ -110,6 +111,11 @@ class QuestionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_question
       @question = Question.find(params[:id])
+    end
+
+    def correct_user
+      @question = current_user.questions.find_by(id: params[:id])
+      redirect_to questions_path, notice: "Not authorized to edit this post" if @question.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -29,5 +29,8 @@ class ApplicationController < ActionController::Base
    devise_parameter_sanitizer.for(:sign_in) << :industry
    devise_parameter_sanitizer.for(:sign_up) << :industry
    devise_parameter_sanitizer.for(:account_update) << :industry
+   devise_parameter_sanitizer.for(:sign_in) << :image
+   devise_parameter_sanitizer.for(:sign_up) << :image
+   devise_parameter_sanitizer.for(:account_update) << :image
  end
 end

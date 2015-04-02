@@ -12,12 +12,17 @@
 	    <%= link_to "Ask a Question!", new_question_path, class: "btn btn-success"%>
 	    
 
-	  <% elsif @questions.count == 0 && params[:unanswered] == 'true' %>
-
-	  <p>There are no unanswered questions</p>
+	  
 	</div>
 </div>
 
+	<% elsif @questions.count == 0 && params[:unanswered] == 'true' %>
+<div class="col-md-10 col-md-offset-1" align="center">
+	<div class="row">
+		<br>
+	  <h4>There are no unanswered questions</h4>
+	</div>
+</div>
   <%else%>
 
 <div class="col-md-10 col-md-offset-1">
