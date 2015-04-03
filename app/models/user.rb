@@ -14,6 +14,8 @@ acts_as_voter
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :name, :company, :presence => true
+
   def increase_karma(count=1)
     update_attribute(:karma, karma + count)
   end

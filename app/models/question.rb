@@ -12,4 +12,6 @@ class Question < ActiveRecord::Base
 	def increase_tally(count=1) # count of upvotes for each question
     	update_attribute(:tally, tally + count)
   	end	
+
+  	validates :title, :description, :category_id, presence: true
 end

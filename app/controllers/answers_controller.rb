@@ -39,7 +39,7 @@ class AnswersController < ApplicationController
         format.html { redirect_to @question, notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
       else
-        format.html { render :new }
+        format.html { redirect_to @question, notice: 'You cannot submit a blank answer, please try again.' }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end

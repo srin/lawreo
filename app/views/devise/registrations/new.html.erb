@@ -17,13 +17,15 @@
     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#nonlawyersignup">
     I'm a non-lawyer
     </button>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
   </div>
 </div>
 
 
 <div id="lawyersignup" class="collapse out">
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+
   <div class="col-md-6 col-md-offset-3">
     <h3 align="center">I'm a lawyer</h3>
     <hr>
