@@ -39,7 +39,7 @@
 
 			<% @answers.each do |answer| %>
 				<div class="well well-sm">
-					<p><%= answer.body %></p>
+					<p><%= truncate(answer.body, length: 120, omission: '.... (click "View" to see full answer)') %></p>
 					<h5><small>Created <%=answer.created_at.to_formatted_s(:long) %></small><span class="categoryprofile"><%= link_to "#{answer.question.category.name}", polymorphic_path([answer.question.category.linkname])  %> </span> <span class="upvotesinfo">Upvotes: <%= answer.get_upvotes.size%></span></h5>
 					<div class="row">
 						<div class="col-md-12">
@@ -60,7 +60,7 @@
 			
 			<% @questions.each do |question| %>
 				<div class="well well-sm">
-					<%= question.title %>
+					<%= truncate(question.title, length: 150, omission: '.... (click "View" to see full question)') %>
 					<h5><small>Created <%=question.created_at.to_formatted_s(:long) %></small><span class="categoryprofile"><%= link_to "#{question.category.name}", polymorphic_path([question.category.linkname])  %> </span><span class="upvotesinfo">Answers: <%= question.answers_count%></span></h5>
 					<div class="row">
 						<div class="col-md-12">
@@ -83,7 +83,7 @@
 
 			<% @comments.each do |comment| %>
 				<div class="well well-sm">
-					<%= comment.body %>
+					<%= truncate(comment.body, length: 120, omission: '.... (click "View" to see full comment)') %>
 					<h5><small>Question created <%=comment.created_at.to_formatted_s(:long) %></small><span class="categoryprofile"><%= link_to "#{comment.question.category.name}", polymorphic_path([comment.question.category.linkname])  %> </span></h5>
 					<div class="row">
 						<div class="col-md-12">

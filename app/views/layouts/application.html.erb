@@ -8,8 +8,9 @@
 </head>
 <body>
 
-<%= render 'layouts/header' %>
-<%= render 'layouts/subnav' %>
+<div id="wrapper">
+	<%= render 'layouts/header' %>
+	<%= render 'layouts/subnav' %>
       
 
 	<div class="container">
@@ -17,7 +18,33 @@
 			<%= content_tag(:div, msg, class: "alert alert-dismissable alert-info") %>
 		<% end %>
         
-<%= yield %>
+		<%= yield %>
 	</div>
+</div>
+<br>
+<br>
+<div id="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-6" id="footer-col">
+
+					<br>
+					<p> <%= link_to "About", "#" %> | <%= link_to "Contact us", "#" %> | <a href="/">Lawreo</a> | </p>
+					
+					
+				</div>
+
+				<div class="col-md-6">
+					<div id="footer-text">
+						<br>
+						<p><small>Lawreo © 2015. All Rights Reserved.</a></small></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>

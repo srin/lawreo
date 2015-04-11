@@ -40,7 +40,7 @@
 			
 			<% @questions.each do |question| %>
 				<div class="well well-sm">
-					<%= question.title %>
+					<%= truncate(question.title, length: 350, omission: '.... (click "View" to see full question)') %>
 					<h5><small>Created <%=question.created_at.to_formatted_s(:long) %></small><span class="categoryprofile"><%= link_to "#{question.category.name}", polymorphic_path([question.category.linkname])  %> </span><span class="upvotesinfo">Answers: <%= question.answers_count%></span></h5>
 					<div class="row">
 						<div class="col-md-12">

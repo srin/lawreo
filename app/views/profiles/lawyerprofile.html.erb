@@ -34,13 +34,13 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h4 align="center">Answer</h4>
+					<h4 align="center">Answers</h4>
 				</div>
 			</div>
 			
 			<% @answers.each do |answer| %>
 				<div class="well well-sm">
-					<p><%= answer.body %></p>
+					<p><%= truncate(answer.body, length: 300, omission: '.... (click "View" to see full answer)') %></p>
 					<h5><small>Created <%=answer.created_at.to_formatted_s(:long) %></small><span class="categoryprofile"><%= link_to "#{answer.question.category.name}", polymorphic_path([answer.question.category.linkname])  %> </span> <span class="upvotesinfo">Upvotes: <%= answer.get_upvotes.size%></span></h5>
 					<div class="row">
 						<div class="col-md-12">
