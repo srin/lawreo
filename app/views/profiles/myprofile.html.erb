@@ -1,0 +1,9 @@
+<% if current_user.is_solicitor == true %>
+
+<%= render 'profiles/islawyer' %>
+
+<%else%>
+
+<%= render 'profiles/is_not_lawyer'%>
+
+<%end%>

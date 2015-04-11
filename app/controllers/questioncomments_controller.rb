@@ -32,7 +32,7 @@ class QuestioncommentsController < ApplicationController
 
     respond_to do |format|
       if @questioncomment.save
-        format.html { redirect_to @question, notice: 'Questioncomment was successfully created.' }
+        format.html { redirect_to @question, notice: 'Comment successfully posted.' }
         format.json { render :show, status: :created, location: @questioncomment }
       else
         format.html { render :new }
@@ -60,7 +60,7 @@ class QuestioncommentsController < ApplicationController
   def destroy
     @questioncomment.destroy
     respond_to do |format|
-      format.html { redirect_to questioncomments_url, notice: 'Questioncomment was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Comment was successfully deleted.' }
       format.json { head :no_content }
     end
   end

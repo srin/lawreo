@@ -32,11 +32,14 @@
           <%= search_field_tag :q, nil, :placeholder => "Search" , class: "form-control"%>
           <%= submit_tag "Submit", class: "btn btn-primary"%>
           <%end%>
-        </div>
+          </div>
+        </div> 
       </div>
-      <ul class="nav navbar-nav navbar-right">
-        
-      </ul>
-    </div>
+
+      <div class="navbar-form navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+          <%= link_to "Ask a question", new_question_path, class: "btn btn-primary"%> 
+        </ul>
+      </div>
   </div>
 </nav>

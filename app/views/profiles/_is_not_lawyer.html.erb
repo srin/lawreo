@@ -1,0 +1,57 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-body" id="profile-header">
+				<div class="col-md-3">
+					<% if @user.image.exists? %>
+         				<img><%= image_tag @user.image.url(:medium)%></img>
+        			<%else%>
+          				<img><%= image_tag "missing.png"%></img>     
+       				<%end%>
+				</div>
+
+				<div class="col-md-4">
+					<h2><strong> <%= @user.name %> </strong></h2>
+					<h4> <%= @user.email %> </h4>
+					<h4> <%= @user.company %> </h4>
+					<h4>Industry: <%= @user.industry%> </h4>
+					<%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-warning" %>
+				</div>
+
+				<div class="col-md-4" id="stats-column">
+					
+					<h2>Number of questions: <%= @user.questions_count %></h2>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		
+		<div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h4 align="center">Questions</h4>
+				</div>
+			</div>
+			
+			<% @questions.each do |question| %>
+				<div class="well well-sm">
+					<%= question.title %>
+					<h5><small>Created <%=question.created_at.to_formatted_s(:long) %></small><span class="categoryprofile"><%= link_to "#{question.category.name}", polymorphic_path([question.category.linkname])  %> </span><span class="upvotesinfo">Answers: <%= question.answers_count%></span></h5>
+					<div class="row">
+						<div class="col-md-12">
+							<%= link_to "View", question_path(question), class: "btn btn-success btn-sm" %>
+							<%= link_to "Edit", edit_question_path(id: question), class: "btn btn-warning btn-sm" %>
+							
+						</div>
+					</div>
+				</div>
+			<%end%>	
+		</div>
+		
+	</div>
+</div>

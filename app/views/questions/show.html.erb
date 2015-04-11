@@ -113,7 +113,18 @@
               <li><h5><small>Answered <%= answer.created_at.to_formatted_s(:long) %></small></h5></li>
               <li><span class="upvotesinfo">Upvotes: <%= answer.get_upvotes.size - answer.get_downvotes.size %></span></li>
               
-              <li> <%= image_tag "missingsmall.png", class: "smallprofileimage"%><span class="firstlastname"><%= answer.user.name %>, <span class="companyinfo">  <%= answer.user.company %></span></span></li>  
+              <li> <%= image_tag "missingsmall.png", class: "smallprofileimage"%><span class="firstlastname">
+              
+              <% if answer.user == current_user %>
+
+                <%= link_to "#{answer.user.name},", profiles_myprofile_path %>&nbsp <span class="companyinfo">  
+                <%= answer.user.company %></span></span></li>  
+
+              <%else%>
+
+                <%= link_to "#{answer.user.name},", profiles_lawyerprofile_path(user: answer.user.id) %>&nbsp <span class="companyinfo">  
+                <%= answer.user.company %></span></span></li> 
+              <%end%> 
 
               <li> <span class="userscorelabel"> User Score: <%= answer.user.karma %></span></li>
               <li>
@@ -135,23 +146,33 @@
     <%end%>
 
   </div>
-  <div class="col-md-8 col-md-offset-3">
-  <div class="form-group">
-    <%= form_for [@question, Answer.new] do |f| %>
 
-      <div class="field">
-        <%= f.label :body, "Post an answer" %><br>
-        <%= f.text_area :body, class: "form-control" %>
-      </div>
+<% if user_signed_in? && current_user.is_solicitor == true %>
+  <div class="col-md-8 col-md-offset-3">
+    <div class="form-group">
+      <%= form_for [@question, Answer.new] do |f| %>
+
+        <div class="field">
+          <%= f.label :body, "Post an answer" %><br>
+          <%= f.text_area :body, class: "form-control" %>
+        </div>
       
     
-      <div class="actions">
-        <br>
-        <%= f.submit class: "btn btn-success" %>
-      </div>
-    <% end %>
+        <div class="actions">
+          <br>
+          <%= f.submit class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+  <%elsif user_signed_in? && current_user.is_solicitor == false %>
+
+  <%else%>
+    <div class="col-md-6 col-md-offset-6">
+          <%= link_to "Sign in / Sign up to post an answer", new_user_session_path, class: "btn btn-success" %>
+          <p class="emailnote">** Please note that only lawyers are permitted to answer questions</p>
+    </div>
+  <%end%>
 
 
 </div>
