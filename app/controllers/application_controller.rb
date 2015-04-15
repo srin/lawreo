@@ -27,7 +27,12 @@ class ApplicationController < ActionController::Base
     def after_sign_out_path_for(resource_or_scope)
     request.referrer
     end
-  
+
+    def disable_nav
+      @disable_nav = true
+      
+    end
+
   protected
 
   def configure_permitted_parameters

@@ -10,7 +10,7 @@
 
 <div id="wrapper">
 	<%= render 'layouts/header' %>
-	<%= render 'layouts/subnav' %>
+	<%= render 'layouts/subnav' unless @disable_nav %>
       
 
 	<div class="container">

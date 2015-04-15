@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'static_pages/home'
+
+  get 'static_pages/about'
+
+  get 'static_pages/contact'
+
+  get 'static_pages/faq'
+
+  get 'static_pages/how_it_works'
+
+  get 'static_pages/privacy'
+
+  get 'static_pages/terms'
+
   get 'profiles/myprofile'
 
   get 'profiles/lawyerprofile'
@@ -44,7 +58,7 @@ resources :answers do
   end
 end
 
-  root 'questions#show_all'
+  root 'static_pages#home'
 
   
   
