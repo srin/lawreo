@@ -33,7 +33,7 @@
                 <%else%>
                 <span class="firstlastname"><%=@question.user.name %>, <span class="companyinfo">  <%= @question.user.company %></span></span></li>
                 <%end%>
-              <li><span class="category"><%= link_to "#{@question.category.name}", "#"  %></span></li>
+              <li><span class="category"><%= link_to "#{@question.category.name}", polymorphic_path([@question.category.linkname])  %></span></li>
             </ul>
           </div>
 
@@ -153,7 +153,7 @@
       <%= form_for [@question, Answer.new] do |f| %>
 
         <div class="field">
-          <%= f.label :body, "Post an answer" %><br>
+          <h3>Post an answer </h3>
           <%= f.text_area :body, class: "form-control" %>
         </div>
       
