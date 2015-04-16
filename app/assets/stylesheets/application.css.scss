@@ -6860,14 +6860,11 @@ a.list-group-item-danger.active:focus {
 
 .firstlastname {
 color: #0F4A72;
-//font-size: 10px;  
-padding: 0.25rem 0.5rem 0.25rem;
-font-size: 0.6875rem;
+font-size: 12px;
+padding: 5px;
 background-color: #EAF5F9; //#F3F6F8;
 border-radius: 4px; 
-float: right; 
-margin-bottom: 10px;
-top: 0px;
+
 a {
   color: #008CBA;
 }
@@ -6875,52 +6872,34 @@ a {
 
 .smallprofileimage{
 width: 24px;
-height: auto;
-margin-right: 5px;
-margin-top: 0px;
 
-float: left; 
-margin-bottom: 8px;
 }
 
 .firstlastname {
 color: #0F4A72;
-//font-size: 10px;  
-padding: 0.25rem 0.5rem 0.25rem;
-font-size: 0.6875rem;
-background-color: #EAF5F9; //#F3F6F8;
-border-radius: 4px; 
-font-size: 12px;
-margin-bottom: 10px;
-top: 0px;
+
 }
 
 .category {
 color: #D46A20; ////#B33626;
-//font-size: 10px;  
-padding: 0.25rem 0.5rem 0.25rem;
-font-size: 0.6875rem;
-float: right;
+
 background-color: #F6EEED; ////#FAF1F0;
 border-radius: 4px; 
-margin-bottom: 10px;
-top: 0px;
 }
 
 .category a{
 color: #D46A20; ////#B33626;
-font-size: 12px;  
-padding: 0.25rem 0.5rem 0.25rem;
-
+font-size: 12px;
+padding: 5px;
 background-color: #F6EEED; ////#FAF1F0;
 border-radius: 4px; 
 }
 
 .categoryprofile a {
-color: #D46A20; ////#B33626;
-font-size: 12px;  
-padding: 0.25rem 0.5rem 0.25rem;
-margin-left: 10px;
+color: #D46A20; ////#B33626; 
+font-size: 12px;
+padding: 5px;
+margin-left: 5px;
 background-color: #F6EEED; ////#FAF1F0;
 border-radius: 4px; 
 }
