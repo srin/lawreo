@@ -58,7 +58,13 @@ resources :answers do
   end
 end
 
-  root 'static_pages#home'
+authenticated :user do
+  root to: "questions#show_all", as: :authenticated_root
+end
+unauthenticated do
+  root to: "static_pages#home", as: :unauthenticated_root
+end
+  
 
   
   
