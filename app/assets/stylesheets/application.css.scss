@@ -16,6 +16,8 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 @import url("//fonts.googleapis.com/css?family=Lato:400,700,400italic");
 /*!
@@ -7101,5 +7103,32 @@ body {
 }
 
 #slider {
-  margin-top: -21px;
+  margin-top: -242px;
+}
+
+@media screen and (max-width: 1200px) {
+    #icons {
+        display: none;
+    }
+    .homepanel {
+      display: none
+    }
+
+    #slider {
+      margin-top: -21px;
+    }
+}
+
+.homepanel {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 200px;
+  left: 30%;
+  width: 40%;
+  top: 110px;
+  z-index: 9999999;
+  color: #eee;
+  h1 {
+    padding-top: 10px;
+  }
 }

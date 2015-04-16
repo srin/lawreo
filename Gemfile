@@ -18,9 +18,8 @@ gem 'has_scope', '~> 0.6.0'
 gem 'bootstrap-sass', '~> 3.3.1.0'
 gem 'will_paginate', '~> 3.0.7'
 gem 'will_paginate-bootstrap'
-gem "font-awesome-rails"
 gem 'simple_form', '~> 3.1.0'
-
+gem 'font-awesome-sass', '~> 4.3.1'
 
 group :development, :test do
      gem 'sqlite3'
