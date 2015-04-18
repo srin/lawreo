@@ -6906,6 +6906,9 @@ border-radius: 4px;
 
 #questiondetails {
 	width: 72%;
+  a {
+    color: #2c3e50;
+  }
 }
 
 #questionshow {
@@ -7112,10 +7115,22 @@ body {
   }
 }
 
-#alertmsg {
-  margin-bottom: 21px;  
+.alert {
+  border-radius: 0;
 }
 
 #answer_body {
   height: 175px;
+}
+
+#answercommentbutton {
+  margin-top: 20px;
+}
+
+.navbar-nav {
+  margin-left: -28px;
+}
+
+#searchitem {
+  margin-right: 15px;
 }

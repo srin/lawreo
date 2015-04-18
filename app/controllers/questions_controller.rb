@@ -25,7 +25,7 @@ class QuestionsController < ApplicationController
 
   def show_all
     @questions = apply_scopes(Question).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
-    @heading = "View all"
+    @heading = "All questions"
     end
 
     def commercial

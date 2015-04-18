@@ -13,11 +13,11 @@
 	<%= render 'layouts/subnav' unless @disable_nav %>
       
 
-	<div class="container" id="alertmsg">
+<div id="alertmsg">
       <% flash.each do |name, msg| %>
 			<%= content_tag(:div, msg, class: "alert alert-dismissable alert-info") %>
 		<% end %>
-	</div>
+</div>
 
     <div class="container">    
 		<%= yield %>

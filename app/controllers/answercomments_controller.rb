@@ -31,7 +31,7 @@ class AnswercommentsController < ApplicationController
 
     respond_to do |format|
       if @answercomment.save
-        format.html { redirect_to @answer, notice: 'Answercomment was successfully created.' }
+        format.html { redirect_to :back, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @answercomment }
       else
         format.html { render :new }

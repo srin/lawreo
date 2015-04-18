@@ -61,7 +61,7 @@
   </button>
 
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#questioncomments">
-    <%= pluralize(@question.questioncomments_count, "Comment") %> to this question <br>
+    <%= pluralize(@question.questioncomments_count, "comment") %> to this question <br>
     Click to view or comment
   </button>
 
@@ -87,13 +87,14 @@
   </div>
 </div>
 <hr>
-
+    <% @question.answers.each do |answer| %>
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <% @question.answers.each do |answer| %>
+
 
     <div class="panel panel-default">
       <div class="panel-body">
+        
         <div class="col-md-1">
           <ul id="votecolumn">
             <li><%=link_to image_tag("icon_upvote.png", :border => 0, width: 18), like_question_answer_path(@question, answer), method: :put%></li>
@@ -102,51 +103,97 @@
           </ul>
         </div>
         
-        <div class="col-md-10 col-md-offset-1">
-        <br>
-        <p><%= answer.body %></p>
+        <div class="col-md-8 col-md-offset-1">
+          <br>
+          <p><%= answer.body %></p>
+            
+        </div>
+
+        <div class="col-md-1">
+          <button class="btn btn-default btn-sm" type="button" data-toggle="collapse" data-target=#<%=answer.id%> aria-expanded="false" aria-controls="collapseExample" id="answercommentbutton">
+    <small>View <%= pluralize(answer.answercomments_count, "comment")%><br> to this answer</small>
+            </button>
         </div>
 
         <div class="row">
           <div class="col-md-10 col-md-offset-2">
-            <ul class="list-inline" id="answerinlinelist">
-              <li><h5><small>Answered <%= answer.created_at.to_formatted_s(:long) %></small></h5></li>
-              <li><span class="upvotesinfo">Upvotes: <%= answer.get_upvotes.size - answer.get_downvotes.size %></span></li>
-              
-              <li> <%= image_tag "missingsmall.png", class: "smallprofileimage"%><span class="firstlastname">
-              
-              <% if answer.user == current_user %>
+              <ul class="list-inline" id="answerinlinelist">
+                <li><h5><small>Answered <%= answer.created_at.to_formatted_s(:long) %></small></h5></li>
+                <li><span class="upvotesinfo">Upvotes: <%= answer.get_upvotes.size - answer.get_downvotes.size %></span></li>
+                
+                <li> <%= image_tag "missingsmall.png", class: "smallprofileimage"%>
+                
+                <% if answer.user == current_user %>
+                  <span class="firstlastname">
+                  <%= link_to "#{answer.user.name},", profiles_myprofile_path %>&nbsp <span class="companyinfo">  
+                  <%= answer.user.company %></span></span></li>  
 
-                <%= link_to "#{answer.user.name},", profiles_myprofile_path %>&nbsp <span class="companyinfo">  
-                <%= answer.user.company %></span></span></li>  
+                <%else%>
+                  <span class="firstlastname">
+                  <%= link_to "#{answer.user.name},", profiles_lawyerprofile_path(user: answer.user.id) %>&nbsp <span class="companyinfo">  
+                  <%= answer.user.company %></span></span></li> 
+                <%end%> 
 
-              <%else%>
+                <li> <span class="userscorelabel"> User Score: <%= answer.user.karma %></span></li>
+                <li>
+                  <% if answer.user.verified == true %> 
+                    <span class="verifiedsolicitor">
+                    <%= "Verified"%></span>
+                    <%else%>
+                    <span class="pendingverification">
+                      <%= "Verification pending" %></span>
+                </li>
+                    <%end%>
+              </ul>
+            </div> <!--col-md-10 col-md-offset-2-->
+        </div> <!--row -->
 
-                <%= link_to "#{answer.user.name},", profiles_lawyerprofile_path(user: answer.user.id) %>&nbsp <span class="companyinfo">  
-                <%= answer.user.company %></span></span></li> 
-              <%end%> 
+      </div>  <!--panel-body -->
+    </div> <!-- panel-default -->
+  </div> <!-- col-md-10 col-md-offset-1 -->
+</div> <!--row -->
 
-              <li> <span class="userscorelabel"> User Score: <%= answer.user.karma %></span></li>
-              <li>
-            <% if answer.user.verified == true %> 
-            <span class="verifiedsolicitor">
-              <%= "Verified"%></span>
-              <%else%>
-              <span class="pendingverification">
-                <%= "Verification pending" %><span>
-              </li>
-              <%end%>
-            </ul>
+<div class="collapse" id=<%="#{answer.id}"%>>
 
+  <% answer.answercomments.each do |answercomments| %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-5">
+      
+      <div class="well well-sm">
+          <%= answercomments.body %><br>
+          <small><i>posted at <%= answercomments.created_at.to_formatted_s(:long)%> by <%= answercomments.user.name %></i></small>
+      </div>
+      
+    </div>  
+   </div>    
+  <%end%>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-5">
+      <div class="form-group">
+        <%= form_for [answer, Answercomment.new] do |f| %>
+          
+
+          <div class="form-group">
+            <%= f.label :body, "Post a comment to the answer" %><br>
+            <%= f.text_area :body, class: "form-control" %>
           </div>
-        </div>
-      </div>  
+          
+          
+          <div class="actions">
+            <%= f.submit "Post comment", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-
-    <%end%>
-
   </div>
+</div>
+    <%end%> <!-- answer.each loop -->
 
+
+
+
+<div class="row">
 <% if user_signed_in? && current_user.is_solicitor == true %>
   <div class="col-md-8 col-md-offset-3">
     <div class="form-group">

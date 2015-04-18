@@ -1,0 +1,7 @@
+
+<% answer.answercomments.each do |answercomments| %>
+<div class="well well-sm">
+    <%= answercomments.body %><br>
+    <small><i>posted at <%= answercomments.created_at.to_formatted_s(:long)%> by <%= answercomments.user.name %></i></small>
+</div>
+ <%end%>
