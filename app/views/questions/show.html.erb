@@ -111,7 +111,11 @@
 
         <div class="col-md-1">
           <button class="btn btn-default btn-sm" type="button" data-toggle="collapse" data-target=#<%=answer.id%> aria-expanded="false" aria-controls="collapseExample" id="answercommentbutton">
-    <small>View <%= pluralize(answer.answercomments_count, "comment")%><br> to this answer</small>
+            <% if answer.answercomments_count == 0 %>
+              <small>Add a comment</small>
+            <%else%>
+              <small>View <%= pluralize(answer.answercomments_count, "comment")%><br> to this answer</small>
+              <%end%>
             </button>
         </div>
 
@@ -168,8 +172,11 @@
    </div>    
   <%end%>
 
+  
   <div class="row">
     <div class="col-md-6 col-md-offset-5">
+
+    <% if user_signed_in? %>
       <div class="form-group">
         <%= form_for [answer, Answercomment.new] do |f| %>
           
@@ -185,6 +192,15 @@
           </div>
         <% end %>
       </div>
+
+      <%else%>
+      
+      
+        <div class="col-md-6 col-md-offset-4" id="postcommentbutton">
+      <%= link_to "Login to post a comment", new_user_session_path, class: "btn btn-info" %>
+        </div>
+      
+      <%end%>
     </div>
   </div>
 </div>

@@ -1,5 +1,6 @@
 class AnswercommentsController < ApplicationController
   before_action :set_answercomment, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /answercomments
   # GET /answercomments.json

@@ -129,34 +129,41 @@
 	
 </div>
 
+<hr>
+
+<div class="row">
+	<div class="col-md-12" align="center">
+
+		<h1><strong>Some recent questions posted!</strong></h1>
+
+	</div>
+</div>
+
 <div class="row">
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 	  <!-- Indicators -->
-	  <ol class="carousel-indicators">
-	    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-	    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-	    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-	  </ol>
+	  
 
 	  <!-- Wrapper for slides -->
 	  <div class="carousel-inner" role="listbox">
 	    <div class="item active">
-	      <div>
-	      	<h3 align="center">Some text</h3>
+	      <div class="well" id="homewell" align="center">
+	      	<h3><%=@lastq.title %></h3>
+	      	<%= link_to "View", @lastq, class: "btn btn-danger" %>
+
 	      </div>
 	      
 	    </div>
+
+	    <% @questions.each do |question| %>
 	    <div class="item">
-	       <div>
-	       	<h3 align="center">Some second text</h3>
+	       <div class="well" id="homewell" align="center">
+	       	<h3><%= question.title %></h3>
+	       	<%= link_to "View", question, class: "btn btn-danger" %>
 	       </div>
 	    </div>
 
-		<div class="item">
-	       <div>
-	       		<h3 align="center">Some third text</h3>
-	       </div>
-	    </div>
+		<%end%>
 
 	  </div>
 	 </div>

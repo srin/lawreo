@@ -9,6 +9,7 @@ class ProfilesController < ApplicationController
   	@questions = @user.questions.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
   	@answers = @user.answers.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     @comments = @user.questioncomments.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    
   end
 
   def lawyerprofile
