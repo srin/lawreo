@@ -34,6 +34,8 @@ get 'questions/commercial'
 
   get 'questions/venture_cap'
 
+  match '/' => 'static_pages#home', via: [:get]
+
   match 'questions/commercial' => 'questions#commercial', via: [:get]
 
   match 'questions/ip' => 'questions#ip', via: [:get]
