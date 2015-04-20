@@ -7144,3 +7144,13 @@ body {
   height: 150px;
   margin-top: 20px;
 }
+
+@media (max-width: 767px) {
+  #questiondetails {
+    margin-left: 15%;
+  }
+
+  #buttoncolumn {
+    text-align: center;
+  }
+}

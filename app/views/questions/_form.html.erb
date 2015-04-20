@@ -35,7 +35,7 @@
 
         <div class="form-group">
         <%= f.check_box :terms %> 
-        <%= f.label :terms, "I accept the terms and conditions when asking this question." %> 
+        <%= f.label :terms, ("I agree to the #{link_to 'Lawreo terms and conditions.', static_pages_terms_path}").html_safe %> 
         </div>
       <hr>
       <div class="actions">

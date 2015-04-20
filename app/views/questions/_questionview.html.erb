@@ -33,16 +33,18 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-md-2">
-						<div class="col-md-6" id="questionboxstats">
+					<div class="col-md-2" id="questionboxstats">
+					
+						<div class="col-xs-6">
 							<h5>&nbsp;&nbsp; <%= question.answers_count%></h5>
 							<p><small>Answers</small></p>
 						</div>
 
-						<div class="col-md-6" id="questionboxstats">
+						<div class="col-xs-6">
 							<h5><%= question.tally%></h5>
 							<p><small>Votes</small></p>
 						</div>
+					
 					</div>
 
 					<div class="col-md-9" id="questiondetails">
@@ -50,7 +52,7 @@
 							<h5><strong><%= question.title %></strong></h5>
 						<%end%>
 						
-						<p><%= question.description %></p>
+						
 					</div>
 
 					<div class="col-md-1">
