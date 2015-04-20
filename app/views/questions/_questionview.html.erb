@@ -73,7 +73,7 @@
 						<%end%> 
 						
 							<li> <%= image_tag "missingsmall.png", class: "smallprofileimage"%>
-								<% if question.anonymous == true %>
+								<% if question.anonymous == true || question.user.nil? %>
 									<span class="firstlastname"><%= "Anonymous" %></span>
 
 								<%else%>

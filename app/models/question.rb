@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
-	has_many :answers
-	has_many :questioncomments
+	has_many :answers, dependent: :destroy
+	has_many :questioncomments, dependent: :destroy
 	belongs_to :user, counter_cache: true
 	belongs_to :category, counter_cache: true
 
@@ -14,4 +14,7 @@ class Question < ActiveRecord::Base
   	end	
 
   	validates :title, :description, :category_id, presence: true
+
+  	validates_acceptance_of :terms
+
 end

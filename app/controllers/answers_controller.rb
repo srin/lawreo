@@ -38,6 +38,7 @@ class AnswersController < ApplicationController
       if @answer.save
         format.html { redirect_to @question, notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
+        AnswerMailer.answer_confirm(@question, @answer).deliver_now
       else
         format.html { redirect_to @question, notice: 'You cannot submit a blank answer, please try again.' }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
@@ -80,7 +81,7 @@ class AnswersController < ApplicationController
       @answer.user.increase_karma
       @answer.question.increase_tally
       flash[:success] = "You've upvoted"
-      # AnswerMailer.upvote_confirm(@post, @comment.user).deliver_now  
+      AnswerMailer.upvote_confirm(@answer.user).deliver_now 
       end
       
       redirect_to @question       
