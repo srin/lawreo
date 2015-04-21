@@ -81,7 +81,7 @@ class AnswersController < ApplicationController
       @answer.user.increase_karma
       @answer.question.increase_tally
       flash[:success] = "You've upvoted"
-      AnswerMailer.upvote_confirm(@answer.user).deliver_now 
+      AnswerMailer.upvote_confirm(@question, @answer.user).deliver_now 
       end
       
       redirect_to @question       

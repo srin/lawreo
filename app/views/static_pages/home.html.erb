@@ -149,14 +149,16 @@
 	  <div class="carousel-inner" role="listbox">
 	    <div class="item active">
 	      <div class="well" id="homewell" align="center">
-	      	<h3><%=@lastq.title %></h3>
-	      	<%= link_to "View", @lastq, class: "btn btn-danger" %>
+	      	<h3><%=@lastq.title unless @lastq.nil?%></h3>
+	      	<%= link_to "View", @lastq, class: "btn btn-danger" unless @lastq.nil?%>
 
 	      </div>
 	      
 	    </div>
 
-	    <% @questions.each do |question| %>
+<% if @questions.nil? != true %>	    
+
+	    <% @questions.each do |question|%>
 	    <div class="item">
 	       <div class="well" id="homewell" align="center">
 	       	<h3><%= question.title %></h3>
@@ -179,3 +181,5 @@
 	  </a>
 	</div>
 </div>
+<%else%>
+<%end%>
