@@ -65,7 +65,7 @@
 				</div>
 
 				<div class="row">
-					<div class="col-md-9 col-md-offset-2">
+					<div class="col-md-9 col-md-offset-2" id="questioninfo">
 					<ul class="list-inline">
 						<% if question.created_at == question.updated_at %>
 							<li><h5><small>Asked <%= question.created_at.to_formatted_s(:long) %></small></h5></li>
@@ -73,6 +73,9 @@
 							<li><h5><small>Asked <%= question.created_at.to_formatted_s(:long) %></small></h5>
 							<h5><small>Last updated <%= question.updated_at.to_formatted_s(:long) %></small></h5></li>
 						<%end%> 
+						<div id="mediabrake">
+							<br>
+						</div>
 						
 							<li> <%= image_tag "missingsmall.png", class: "smallprofileimage"%>
 								<% if question.anonymous == true || question.user.nil? %>

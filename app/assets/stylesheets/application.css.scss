@@ -7145,12 +7145,54 @@ body {
   margin-top: 20px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 997px) {
   #questiondetails {
     margin-left: 15%;
   }
 
   #buttoncolumn {
     text-align: center;
+  }
+
+  #questionfilter {
+  list-style-type: none;
+  background: none;
+text-align: center;
+  
+  .active {
+      background: #2C3E50;
+      color: #ffffff; 
+      padding: 0;
+  
+      a {
+        color: #ffffff;
+        text-align: center;
+        padding: 0;
+      }
+    }
+  li {
+    display: inline;
+    text-align: center;
+    .active {
+      color: #2c3e50;
+    }
+    a {
+      color: #333;
+      text-align: center;
+      padding: 0px;
+  
+      }      
+   } 
+  }
+
+  #questioninfo {
+    text-align: center;
+
+  }
+}
+
+@media (min-width: 997px) {
+  #mediabrake {
+    display: none;
   }
 }

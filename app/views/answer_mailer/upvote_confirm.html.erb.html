@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Your answer has received an upvote!</title>
+</head>
+<body>
+
+<h2>Hi <%= @user.name %>! </h2>
+
+<p>Your answer to the following question has received an upvote. Nice work!!</p>
+
+<p>Question: <strong><%=@question.title%></strong></p>
+
+<p>Your user score rating is now: <%=@user.karma%> </p>
+
+<p>To improve your score, answer more questions on <a href="http://www.lawreo.com">Lawreo</a>.</p>
+
+<p>Have a great day!</p>
+
+Warm regards<br>
+Lawreo<br>
+
+</body>
+</html>	
