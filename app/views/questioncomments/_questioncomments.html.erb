@@ -2,6 +2,6 @@
 <% @question.questioncomments.each do |questioncomments| %>
 <div class="well well-sm">
     <%= questioncomments.body %><br>
-    <small><i>posted at <%= questioncomments.created_at.to_formatted_s(:long)%> by <%= questioncomments.user.name %></i></small>
+    <small><i>posted at <%= questioncomments.created_at.to_formatted_s(:long)%>%></i></small>
 </div>
  <%end%>
