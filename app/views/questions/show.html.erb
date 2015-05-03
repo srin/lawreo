@@ -3,7 +3,7 @@
 
 
     <div class="panel panel-default">
-      <div class="panel-body">
+      <div class="panel-body" id="panel-question">
         <div class="row">
           
 
@@ -94,15 +94,15 @@
     <div class="panel panel-default">
       <div class="panel-body">
         
-        <div class="col-md-1">
+        <div class="col-md-2">
           <ul id="votecolumn">
-            <li><%=link_to image_tag("icon_upvote.png", :border => 0, width: 18), like_question_answer_path(@question, answer), method: :put, :data => {:toggle=>"tooltip"}, :title => "Click to upvote this answer"%></li>
-            <li id="votenumber">&nbsp<%= answer.get_upvotes.size - answer.get_downvotes.size %> </li>
-            <li><%= link_to image_tag("icon_downvote.png", :border => 0, width: 18), dislike_question_answer_path(@question, answer), method: :put, :data => {:toggle=>"tooltip"}, :title => "Click to downvote this answer"%></li>
+            <li><%=link_to image_tag("icon_upvote.png", :border => 0, width: 18), like_question_answer_path(@question, answer), method: :put, :data => {:toggle=>"tooltip"}, :title => "Click to upvote this answer"%><span id="votenumbertop">&nbsp<%= answer.get_upvotes.size%></span></li>
+            <br>
+            <li><%= link_to image_tag("icon_downvote.png", :border => 0, width: 18), dislike_question_answer_path(@question, answer), method: :put, :data => {:toggle=>"tooltip"}, :title => "Click to downvote this answer"%><span id="votenumberbottom">&nbsp<%= answer.get_downvotes.size%></span></li>
           </ul>
         </div>
         
-        <div class="col-md-8 col-md-offset-1">
+        <div class="col-md-8" id="answerbody">
           <br>
           <p><%= answer.body %></p>
             

@@ -31,7 +31,7 @@
 		<% @questions.each do |question| %>
 
 		<div class="panel panel-default">
-			<div class="panel-body">
+			<div class="panel-body" id="panel-question">
 				<div class="row">
 					<div class="col-md-2" id="questionboxstats">
 					
@@ -52,6 +52,7 @@
 							<h5><strong><%= question.title %></strong></h5>
 						<%end%>
 						
+						<%= truncate(question.description, length: 120, omission: '.... (click "View" to see full question)') %>
 						
 					</div>
 
