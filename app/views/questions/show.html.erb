@@ -225,9 +225,9 @@
 
 
 
-<div class="row">
+<div class="row" id="scrolldown">
 <% if user_signed_in? && current_user.is_solicitor == true %>
-  <div class="col-md-8 col-md-offset-3" id="scrolldown">
+  <div class="col-md-8 col-md-offset-3">
     <div class="form-group">
       <%= form_for [@question, Answer.new] do |f| %>
 
