@@ -2,6 +2,22 @@
 <% @question.questioncomments.each do |questioncomments| %>
 <div class="well well-sm">
     <%= questioncomments.body %><br>
-    <small><i>posted at <%= questioncomments.created_at.to_formatted_s(:long)%>%></i></small>
+    <small><i>posted at <%= questioncomments.created_at.to_formatted_s(:long)%> by 
+		
+		<% if questioncomments.user == questioncomments.question.user %>
+		<%= "the Original Poster"%>
+
+		<%elsif questioncomments.user != questioncomments.question.user && questioncomments.user.is_solicitor? == true %>
+
+		<%= questioncomments.user.name %>
+
+		<%elsif questioncomments.user != questioncomments.question.user && questioncomments.user.is_solicitor? == false %>
+
+		<%= "another Lawreo user (non-lawyer)" %>
+
+		<%end%>
+
+
+    	</i></small>
 </div>
  <%end%>

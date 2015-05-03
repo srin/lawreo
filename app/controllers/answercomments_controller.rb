@@ -35,6 +35,8 @@ class AnswercommentsController < ApplicationController
       if @answercomment.save
         format.html { redirect_to :back, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @answercomment }
+        CommentMailer.answercomment_confirm_oqp(@question).deliver_now
+        CommentMailer.answercomment_confirm_answerer(@question, @answer).deliver_now
         
       else
         format.html { render :new }
