@@ -82,10 +82,10 @@ Rails.application.configure do
    :port                 => 587,
    :user_name            => ENV['MANDRILL_USERNAME'],
    :password             => ENV['MANDRILL_PASSWORD'], # SMTP password is any valid API key
-   :domain               => 'nameless-coast-6043.herokuapp.com', # your domain to identify your server when  connecting
+   :domain               => 'www.lawreo.com', # your domain to identify your server when  connecting
    :authentication       => 'login' # Mandrill supports 'plain' or 'login'
  }
-  config.action_mailer.default_url_options = { :host => 'https://nameless-coast-6043.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'http://www.lawreo.com' }
 
   config.paperclip_defaults = {
   :storage => :s3,
