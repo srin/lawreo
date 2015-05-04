@@ -72,15 +72,11 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-5">
 
-    <% if user_signed_in? %>
+    
 
     <%= render 'questioncomments/questioncomments'%>
 
-    <%else%>
     
-    <%= link_to "Login to post a comment", new_user_session_path, class: "btn btn-info" %>
-
-    <%end%>
 
     </div>
 
@@ -89,7 +85,13 @@
 
   <div class="row">
     <div class="col-md-4 col-md-offset-7">
+    <% if user_signed_in? %>
     <%= render 'questioncomments/form' %>
+    <%else%>
+    
+    <%= link_to "Login to post a comment", new_user_session_path, class: "btn btn-info" %>
+
+    <%end%>
 
     </div>
   </div>
