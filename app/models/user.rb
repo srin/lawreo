@@ -23,4 +23,16 @@ acts_as_voter
   def decrease_karma(count=1)
   	update_attribute(:karma, karma - count)
   end
+
+  after_create :user_notification
+
+  def user_notification
+    if self.is_solicitor? == true
+      UserMailer.new_user_lawyer(self).deliver_now
+
+    else
+      UserMailer.new_user_nonlawyer(self).deliver_now
+     end
+   end
+
 end
