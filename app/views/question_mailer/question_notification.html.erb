@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Your question has been posted to Lawreo</title>
+</head>
+<body>
+
+<h2>Hi <%= @question.user.name %>! </h2>
+
+<p>Your question has been posted to Lawreo. We'll do everything we can to make sure a lawyer from the Lawreo community answers it.</p>
+
+<p> To see the question, <%= link_to "click here", question_url(@question) %>.</p>
+
+<p>Have a great day!</p>
+
+Warm regards<br>
+Lawreo<br>
+
+</body>
+</html>	

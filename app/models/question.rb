@@ -17,4 +17,11 @@ class Question < ActiveRecord::Base
 
   	validates_acceptance_of :terms
 
+  	after_create :question_notification
+
+  	def question_notification
+  		QuestionMailer.question_notification(self).deliver_now
+  		
+  	end
+
 end

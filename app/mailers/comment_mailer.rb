@@ -5,18 +5,18 @@ class CommentMailer < ApplicationMailer
 		@question = question
 		@comment = questioncomment
 
-		mail(to: @question.user.email, cc: "smadipalli@hotmail.com", subject: "A comment has been posted to your question")
+		mail(to: @question.user.email, cc: "hello@lawreo.com", subject: "A comment has been posted to your question")
 	end	
 
 	def answercomment_confirm_oqp(question)
 		@question = question
 
-		mail(to: @question.user.email, cc: "smadipalli@hotmail.com", subject: "A comment has been posted to answer to your question")
+		mail(to: @question.user.email, cc: "hello@lawreo.com", subject: "A comment has been posted to answer to your question")
 	end
 
 	def answercomment_confirm_answerer(question, answer)
 		@question = question
 		@answer = answer
-		mail(to: @answer.user.email, cc: "smadipalli@hotmail.com", subject: "A comment has been posted to your answer")	
+		mail(to: @answer.user.email, cc: "hello@lawreo.com", subject: "A comment has been posted to your answer")	
 	end
 end
