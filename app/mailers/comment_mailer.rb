@@ -11,7 +11,7 @@ class CommentMailer < ApplicationMailer
 	def answercomment_confirm_oqp(question)
 		@question = question
 
-		mail(to: @question.user.email, cc: "hello@lawreo.com", subject: "A comment has been posted to answer to your question")
+		mail(to: @question.user.email, cc: "hello@lawreo.com", subject: "A comment has been posted to an answer to your question")
 	end
 
 	def answercomment_confirm_answerer(question, answer)
